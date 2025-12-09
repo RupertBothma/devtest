@@ -25,6 +25,19 @@ class TestHealthEndpoint:
         assert response.json() == {"status": "ok"}
 
 
+class TestVersionEndpoint:
+    """Tests for the /version endpoint."""
+
+    def test_version_returns_info(self, client):
+        """Version endpoint should return version information."""
+        response = client.get("/version")
+        assert response.status_code == 200
+        data = response.json()
+        assert "version" in data
+        assert "name" in data
+        assert "environment" in data
+
+
 class TestConfigEndpoint:
     """Tests for the /config endpoint."""
 
