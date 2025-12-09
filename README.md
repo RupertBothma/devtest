@@ -47,15 +47,38 @@ This repository demonstrates a complete DevOps workflow for a Python FastAPI app
 | Helm | 3.10+ | [helm.sh](https://helm.sh/docs/intro/install/) |
 | Docker Desktop | Latest | Enable Kubernetes in Settings |
 
+> **Note**: This project uses **Docker Desktop Kubernetes** as the target environment. Docker Desktop provides a local single-node Kubernetes cluster ideal for development and testing. To enable: Docker Desktop → Settings → Kubernetes → Enable Kubernetes.
+
 ---
 
 ## Quick Start
+
+### Using Makefile (Recommended)
 
 ```bash
 # Clone repository
 git clone https://github.com/RupertBothma/devtest.git
 cd devtest
 
+# Check all dependencies are installed
+make setup
+
+# Build and run with Docker
+make docker-build
+make docker-run
+
+# Or deploy to Kubernetes
+make k8s-deploy
+
+# Test
+curl http://localhost:8080/health
+```
+
+Run `make help` to see all available commands.
+
+### Manual Commands
+
+```bash
 # Option 1: Run with Docker
 docker build -t fastapi-app .
 docker run -p 8080:8080 -e SECRET_KEY=my-secret fastapi-app

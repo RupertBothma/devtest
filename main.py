@@ -19,6 +19,16 @@ def health():
     return {"status": "ok"}
 
 
+@app.get("/version")
+def version():
+    """Return application version information."""
+    return {
+        "version": APP_VERSION,
+        "name": APP_NAME,
+        "environment": APP_ENV,
+    }
+
+
 @app.get("/config")
 def get_config():
     return {
