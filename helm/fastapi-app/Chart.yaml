@@ -1,0 +1,12 @@
+apiVersion: v2
+name: fastapi-app
+description: A Helm chart for deploying FastAPI application to Kubernetes
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+maintainers:
+  - name: DevOps Engineer
+keywords:
+  - fastapi
+  - python
+  - api

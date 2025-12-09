@@ -1,0 +1,61 @@
+# =============================================================================
+# Docker Build Context Exclusions
+# =============================================================================
+# Purpose: Reduce build context size, prevent sensitive files from entering image
+# =============================================================================
+
+# Version Control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.eggs
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+.env
+.venv
+venv/
+ENV/
+env/
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# CI/CD & Deployment (not needed in image)
+.github/
+helm/
+*.md
+!README.md
+
+# Docker (prevent recursive issues)
+Dockerfile
+docker-compose*.yml
+
+# Development
+tests/
+requirements-dev.txt
+pyproject.toml
+ruff.toml
+
+# OS
+.DS_Store
+Thumbs.db
