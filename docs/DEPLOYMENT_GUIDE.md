@@ -1,6 +1,6 @@
 # CI/CD Deployment Guide
 
-> How to configure Stage 5 (Deploy) to deploy to an external Kubernetes cluster.
+> Complete guide to the automated CI/CD pipeline and how to configure deployment to external Kubernetes clusters.
 
 ## Pipeline Overview
 
@@ -17,12 +17,12 @@
                            On: Push to main/master
 ```
 
-## Stage 5: Deploy to External Cluster
+## Deploy Stage: Kubernetes Deployment
 
-Stage 5 (Deploy) is the final stage that deploys the application to a Kubernetes cluster. It:
+The deploy stage is the final step in the CI/CD pipeline that deploys the application to a Kubernetes cluster. It:
 
 1. **Runs only on main/master** - Triggered after successful push to GHCR
-2. **Uses GitHub Environments** - Optional approval gate for production
+2. **Uses GitHub Environments** - Optional approval gate for production deployments
 3. **Deploys with Helm** - Uses the same chart tested locally
 4. **Verifies deployment** - Waits for rollout and confirms pods are running
 
@@ -225,9 +225,9 @@ kubectl rollout undo deployment/fastapi-app
 
 ### Deploy Stage Skipped
 
-**Cause**: The deploy stage requires the KUBE_CONFIG secret.
+**Cause**: The deploy stage requires proper AWS credentials and cluster configuration.
 
-**Solution**: Add the secret as described above. If the secret is missing, the stage will fail at the "Configure Kubernetes access" step.
+**Solution**: Ensure all required secrets are configured as described in the Configuration Requirements section above. If secrets are missing, the stage will fail at the "Configure AWS credentials" step.
 
 ### Authentication Failed
 

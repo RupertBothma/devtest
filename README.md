@@ -1,17 +1,17 @@
-# FastAPI DevOps Assessment
+# FastAPI Production Template
 
 [![CI/CD Pipeline](https://github.com/RupertBothma/devtest/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/RupertBothma/devtest/actions/workflows/ci-cd.yml)
 
-A production-ready FastAPI application with Docker containerization, CI/CD pipeline, and Kubernetes deployment via Helm.
+A production-ready FastAPI template with Docker containerization, automated CI/CD pipeline, and Kubernetes deployment via Helm. This project demonstrates best practices for containerizing, testing, and deploying Python applications at scale.
 
 ## 📋 Table of Contents
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
-- [Task 1: Docker](#task-1-docker)
-- [Task 2: CI/CD Pipeline](#task-2-cicd-pipeline)
-- [Task 3: Helm Chart](#task-3-helm-chart)
+- [Docker Containerization](#docker-containerization)
+- [CI/CD Pipeline](#cicd-pipeline)
+- [Kubernetes & Helm](#kubernetes--helm)
 - [Configuration Reference](#configuration-reference)
 - [Technical Decisions](#technical-decisions)
 - [Troubleshooting](#troubleshooting)
@@ -20,7 +20,7 @@ A production-ready FastAPI application with Docker containerization, CI/CD pipel
 
 ## Overview
 
-This repository demonstrates a complete DevOps workflow for a Python FastAPI application:
+This repository provides a complete, production-ready template for deploying Python FastAPI applications:
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
@@ -93,7 +93,7 @@ curl http://localhost:8080/health
 
 ---
 
-## Task 1: Docker
+## Docker Containerization
 
 ### Build & Run
 
@@ -124,7 +124,7 @@ docker exec fastapi whoami  # Should output: appuser
 
 ---
 
-## Task 2: CI/CD Pipeline
+## CI/CD Pipeline
 
 ### Pipeline Stages
 
@@ -158,7 +158,7 @@ pytest --cov=. tests/
 
 ---
 
-## Task 3: Helm Chart
+## Kubernetes & Helm
 
 ### Installation
 
@@ -248,7 +248,7 @@ autoscaling:
 | **Base Image** | `python:3.11-slim` | Debian-based for reliability; slim variant reduces size; 3.11 for performance |
 | **Linter** | Ruff | 10-100x faster than flake8; combines linting + formatting; actively maintained |
 | **Registry** | GHCR | Integrated with GitHub Actions; uses GITHUB_TOKEN; no extra credentials |
-| **Secrets** | K8s Secrets | Assessment scope; production would use External Secrets or Sealed Secrets |
+| **Secrets** | K8s Secrets | Simple, built-in solution; production deployments should use External Secrets or Sealed Secrets |
 | **Probes** | HTTP /health | Native endpoint; appropriate for stateless API |
 | **Update Strategy** | RollingUpdate | Zero-downtime deployments; maxSurge=1, maxUnavailable=0 |
 
